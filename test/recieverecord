@@ -1,0 +1,8 @@
+[0;32;47minfo:[0m
+[0;32;0mconnection from:Senderauthentic way:plaintext
+[0m[0;32;47minfo:[0m
+[0;32;0mAuthentication succeeds.Start your conversation.
+[0m[0;31;42mSender:[0m
+[0;32;0mchanges
+[0m[0;32;47minfo:[0m
+[0;32;0mpeer is closed:<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 8888), raddr=('127.0.0.1', 48834)>

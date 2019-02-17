@@ -1,0 +1,16 @@
+python3 Asyncioimsender.py -i localhost -p 8888 -m plaintext -n sender
+python3 Asyncioimsender.py -i localhost -p 8888 -m AuthenKey -n sender
+python3 Asyncioimsender.py -i localhost -p 8888 -m SSL -n sender
+
+python3 Asyncioimsender.py -i localhost -p 8888 -m AuthenKey -n A
+python3 Asyncioimsender.py -i localhost -p 8888 -m AuthenKey -n B
+python3 Asyncioimsender.py -i localhost -p 8888 -m AuthenKey -n C
+
+
+python3 Asyncioimreceiver.py -i localhost -p 8888 -m personal -n receiver
+python3 Asyncioimreceiver.py -i localhost -p 8888 -m group -n receiver
+redis-server
+redis-cli
+sudo tcpdump -i lo port 8888 -X
+cd /media/acer/临时文件/python/Pytest/IM/
+
