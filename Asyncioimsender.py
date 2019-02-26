@@ -36,11 +36,10 @@ TRUSTED_CA_FILE = TRUSTED_CA + os.sep + "CAfile.pem"
 
 # Your own CA
 MY_CA = BASE_DIR + os.sep + "myCA" + os.sep + "myCA.crt"
-MY_CA_KEY = BASE_DIR + os.sep + "myCA" + os.sep + "myA.key"
+MY_CA_KEY = BASE_DIR + os.sep + "myCA" + os.sep + "myCA.key"
 # the password for the above key,must be string, None if no password
 MY_CA_KEY_PWD = "1234"
 
-MY_NAME = "Sender"
 TIMEOUT = 20
 
 
@@ -88,7 +87,7 @@ class Connector(object):
                 raise Exception("lack constant variable")
 
         logging.info("Try to connect:{0!s}".format(self.peersock))
-        self.connect_active()
+        self.connect()
         self.peersock.settimeout(None)
         self.show("info", "Connection succeeds.Start your conversation.\n")
 
@@ -96,7 +95,7 @@ class Connector(object):
                                                            self._othername))
         self.multi.register(self.peersock, selectors.EVENT_READ, self.read)
 
-    def connect_active(self):
+    def connect(self):
         """
         The active connector make connection.
         depending on the conntype, do the connection.
@@ -176,6 +175,8 @@ class Connector(object):
         """
         if conn == self.input_:
             content = self.input_.readline()
+            if content=='\n':
+                return
             if self.last == self.myname:
                 name = ""
             else:
@@ -202,7 +203,8 @@ class Connector(object):
                     sys.exit(0)
             self.parse_contents(content)
 
-    def multiplex(self):
+    @staticmethod
+    def multiplex():
         """
         IO multiplex constructor.
         :return: a selector instance.
@@ -273,8 +275,7 @@ def main():
     # get params
     parsedoption = get_option(sys.argv[1:], option)
 
-    global MY_NAME
-    MY_NAME = parsedoption.SELFNAME
+    my_name = parsedoption.SELFNAME
 
     try:
         sock = socket.create_connection((parsedoption.IP, parsedoption.PORT),
@@ -286,7 +287,7 @@ def main():
         logging.error("unknown Failure:{}".format(e))
         raise
 
-    message = MY_NAME[:20] + ":" + parsedoption.METHOD + "\n"
+    message = my_name[:20] + ":" + parsedoption.METHOD + "\n"
     sock.sendall(message.encode("utf8"))
     way, peername = sock.recv(1024).decode().strip().split(":")
 
@@ -295,7 +296,7 @@ def main():
     try:
         connector = Connector(sock=sock, conntype=parsedoption.METHOD,
                               key=parsedoption.KEY, const=globals(),
-                              myname=MY_NAME, timeout=TIMEOUT,
+                              myname=my_name, timeout=TIMEOUT,
                               othername=peername, way=way)
     except (socket.error, socket.timeout) as e:
         logging.error("socket creation Failure:{}".format(e))

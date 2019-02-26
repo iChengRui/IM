@@ -1,0 +1,25 @@
+DEBUG:2019-02-26 10:06:44,706:selector_events.py:65:Using selector: EpollSelector
+ERROR:2019-02-26 10:07:19,792:base_events.py:1274:Task exception was never retrieved
+future: <Task finished coro=<BaseEventLoop.connect_accepted_socket() done, defined at /usr/lib/python3.6/asyncio/base_events.py:1078> exception=ConnectionResetError()>
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/asyncio/base_events.py", line 1093, in connect_accepted_socket
+    sock, protocol_factory, ssl, '', server_side=True)
+  File "/usr/lib/python3.6/asyncio/base_events.py", line 835, in _create_connection_transport
+    yield from waiter
+ConnectionResetError
+ERROR:2019-02-26 10:10:33,884:base_events.py:1274:Task exception was never retrieved
+future: <Task finished coro=<BaseEventLoop.connect_accepted_socket() done, defined at /usr/lib/python3.6/asyncio/base_events.py:1078> exception=ConnectionResetError()>
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/asyncio/base_events.py", line 1093, in connect_accepted_socket
+    sock, protocol_factory, ssl, '', server_side=True)
+  File "/usr/lib/python3.6/asyncio/base_events.py", line 835, in _create_connection_transport
+    yield from waiter
+ConnectionResetError
+ERROR:2019-02-26 10:13:48,831:base_events.py:1274:Task exception was never retrieved
+future: <Task finished coro=<BaseEventLoop.connect_accepted_socket() done, defined at /usr/lib/python3.6/asyncio/base_events.py:1078> exception=ConnectionResetError()>
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/asyncio/base_events.py", line 1093, in connect_accepted_socket
+    sock, protocol_factory, ssl, '', server_side=True)
+  File "/usr/lib/python3.6/asyncio/base_events.py", line 835, in _create_connection_transport
+    yield from waiter
+ConnectionResetError

@@ -59,10 +59,19 @@ def random_string(slen: int = 10):
 
 
 def get_input(in_, selfdisplay, prefx, out):
+    """
+
+    :param in_: file-like objects,receiving input.
+    :param selfdisplay: display for yourself.
+    :param prefx: title.
+    :param out: send to others.
+    :return:
+    """
     data = in_.readline()
+    if data=='\n':
+        return
     if data:
         selfdisplay(selfdisplay.selfname, data)
-
         data = prefx + data.encode()
         out(data)
 
